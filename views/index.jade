@@ -1,0 +1,17 @@
+extends layout
+
+block content
+	.container
+		.row.head.col-md-6.col-md-offset-3
+			h1= title
+		.row.col-md-6.col-md-offset-3
+			form.form(role='form')
+				div.form-group
+					input.form-control.input-lg(name='searchinput',type='search', id='srch-txt',
+						placeholder='SEARCH', method='get', action='/search')
+				button.btn.btn-default.btn-group-lg.srch-btn(type='button') Search
+	script(src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+	script(src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js")
+	script(src="/javascripts/aj.js")
+
+	include hbars.html
