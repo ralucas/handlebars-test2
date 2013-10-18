@@ -32,11 +32,24 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 
 app.get('/search', function (req, res){
-	fs.readFile(__dirname + '/public/javascripts/search-data.json', function (err, data){
+	fs.readFile(__dirname + '/public/javascripts/search-data.js', function (err, data){
 		if(err){console.log(err);}
-		res.send(data);
+		var d = JSON.parse(data);
+		var searchTerm = req.query.key;
+		var reg = new RegExp(searchTerm, 'gi');
+		
+		for(var x in d){
+			for(var y in d[x]){
+				if(d[x][y]['desc'].match(reg)){
+					res.send(d[x][y]);
+				}
+			}
+		}
 	});
+	
 });
+
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
