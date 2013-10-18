@@ -3,12 +3,12 @@ $(function (){
 	var template = Handlebars.compile(source);
 	var results = $('#results');
 
-	$(".srch-btn").click( function(){
+	$(".srch-btn").on('click', function(){
 		var srchVal = $(this).parent().find('#srch-txt').val();
 		var re = new RegExp(srchVal, 'gi');
 		
 		$.get('/search', {key : srchVal}, function (data){
-			results.html(template(data));
+			results.html(template({results : data}));
 		});
 	});
 });

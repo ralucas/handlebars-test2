@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -37,14 +36,15 @@ app.get('/search', function (req, res){
 		var d = JSON.parse(data);
 		var searchTerm = req.query.key;
 		var reg = new RegExp(searchTerm, 'gi');
-		
+		var dataArr = [];
 		for(var x in d){
 			for(var y in d[x]){
-				if(d[x][y]['desc'].match(reg)){
-					res.send(d[x][y]);
+				if(d[x][y]['desc'].match(reg) || y.match(reg)){
+					dataArr.push(d[x][y]);
 				}
 			}
 		}
+		res.send(dataArr);
 	});
 	
 });

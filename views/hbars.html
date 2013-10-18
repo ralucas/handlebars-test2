@@ -1,3 +1,5 @@
 <script id="search-template" type="text/x-handlebars-template">
-	{{desc}}
+	{{#each results}}
+		<li class='lead'>{{desc}}</li>
+	{{/each}}
 </script>
